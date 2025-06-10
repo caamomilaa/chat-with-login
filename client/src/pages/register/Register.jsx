@@ -1,11 +1,11 @@
 import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../lib/config/firebase.config';
 
-const Register = () => {
+const Register = ({ navigate }) => {
 	return (
 		<>
 			<h1>Register</h1>
-			<form onSubmit={event => registerUser(event)}>
+			<form onSubmit={event => registerUser(event, navigate)}>
 				<div>
 					<label htmlFor='email'>Email</label>
 					<input name='email' type='text' />
@@ -20,7 +20,7 @@ const Register = () => {
 	);
 };
 
-const registerUser = async event => {
+const registerUser = async (event, navigate) => {
 	event.preventDefault();
 	const formData = event.target;
 	const email = formData.email.value;
@@ -28,6 +28,7 @@ const registerUser = async event => {
 
 	try {
 		await createUserWithEmailAndPassword(auth, email, password);
+		navigate('/chat');
 	} catch (error) {
 		console.log(error);
 	}

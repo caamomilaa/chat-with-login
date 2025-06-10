@@ -1,11 +1,11 @@
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../../lib/config/firebase.config';
 
-const SignIn = () => {
+const SignIn = ({ navigate }) => {
 	return (
 		<>
 			<h1>Sign In</h1>
-			<form onSubmit={loginUser}>
+			<form onSubmit={event => loginUser(event, navigate)}>
 				<div>
 					<label htmlFor='email'>Email</label>
 					<input type='text' />
@@ -20,7 +20,7 @@ const SignIn = () => {
 	);
 };
 
-const loginUser = async event => {
+const loginUser = async (event, navigate) => {
 	event.preventdefault();
 
 	const formData = event.target;
@@ -29,6 +29,7 @@ const loginUser = async event => {
 
 	try {
 		await signInWithEmailAndPassword(auth, email, password);
+		navigate('/chat');
 	} catch (error) {
 		console.log(error);
 	}
