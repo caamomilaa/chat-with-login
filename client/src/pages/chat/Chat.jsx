@@ -5,7 +5,7 @@ const Chat = ({ navigate }) => {
 	return (
 		<>
 			<h1>chat chulo y bonito</h1>
-			<button onClick={handleSignOut(navigate)}>Cerrar sesión</button>
+			<button onClick={() => handleSignOut(navigate)}>Cerrar sesión</button>
 		</>
 	);
 };

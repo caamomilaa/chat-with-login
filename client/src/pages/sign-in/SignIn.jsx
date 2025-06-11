@@ -8,11 +8,11 @@ const SignIn = ({ navigate }) => {
 			<form onSubmit={event => loginUser(event, navigate)}>
 				<div>
 					<label htmlFor='email'>Email</label>
-					<input type='text' />
+					<input name='email' type='text' />
 				</div>
 				<div>
 					<label htmlFor='password'>Password</label>
-					<input type='text' />
+					<input name='password' type='text' />
 				</div>
 				<input type='submit' value='sigin' />
 			</form>
@@ -21,11 +21,11 @@ const SignIn = ({ navigate }) => {
 };
 
 const loginUser = async (event, navigate) => {
-	event.preventdefault();
+	event.preventDefault();
 
 	const formData = event.target;
 	const email = formData.email.value;
-	const password = formData.password;
+	const password = formData.password.value;
 
 	try {
 		await signInWithEmailAndPassword(auth, email, password);
